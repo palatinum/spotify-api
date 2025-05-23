@@ -1,0 +1,46 @@
+version: '3.9'
+services:
+    app:
+        container_name: spotify-api
+        build:
+            context: .
+            dockerfile: ./.docker/app.dockerfile
+        depends_on:
+            - db
+        networks:
+            - spotify-network
+        volumes:
+            - .:/var/www:delegated
+    web:
+        container_name: spotify-web
+        build:
+            context: .
+            dockerfile: ./.docker/web.dockerfile
+        depends_on:
+            - app
+        ports:
+            - "80:80"
+        networks:
+            - spotify-network
+        volumes:
+            - .:/var/www:ro
+    db:
+        container_name: spotify-db
+        image: mysql:8.0
+        restart: unless-stopped
+        volumes:
+            - data:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+        ports:
+            - "3306:3306"
+        networks:
+            - spotify-network
+volumes:
+    data:
+networks:
+    spotify-network:
+        driver: bridge
