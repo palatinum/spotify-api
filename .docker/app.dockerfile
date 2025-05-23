@@ -14,4 +14,6 @@ RUN apt-get update && apt-get install -y \
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage /var/www/bootstrap/cache
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-CMD composer install && php artisan migrate
+COPY .docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+CMD ["/entrypoint.sh"]
