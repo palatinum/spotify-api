@@ -13,7 +13,7 @@ class TrackIdInvalidFormatResource extends JsonResource
              * Track ID format is invalid
              * @example "Track ID format is invalid."
              */
-            'message' => $this->message,
+            'message' => $this['message'],
         ];
     }
 

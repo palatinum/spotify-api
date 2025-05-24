@@ -2,7 +2,8 @@
     "openapi": "3.1.0",
     "info": {
         "title": "SPOTIFY-API",
-        "version": "0.0.1"
+        "version": "0.0.1",
+        "description": "Spotify API docs"
     },
     "servers": [
         {
@@ -13,6 +14,7 @@
         "/tracks/{trackId}": {
             "get": {
                 "operationId": "tracks.GetTrackById",
+                "summary": "Get track by id",
                 "tags": [
                     "GetTrackById"
                 ],
@@ -27,69 +29,131 @@
                     }
                 ],
                 "responses": {
-                    "400": {
-                        "description": "",
+                    "422": {
+                        "description": "`TrackIdInvalidFormatResource`",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": [
-                                        "message"
-                                    ]
+                                    "$ref": "#/components/schemas/TrackIdInvalidFormatResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "`TrackIdEmptyResource`",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TrackIdEmptyResource"
                                 }
                             }
                         }
                     },
                     "404": {
-                        "description": "",
+                        "description": "`TrackNotFoundResource`",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": [
-                                        "message"
-                                    ]
+                                    "$ref": "#/components/schemas/TrackNotFoundResource"
                                 }
                             }
                         }
                     },
                     "200": {
-                        "description": "",
+                        "description": "`TrackResource`",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "name": {
-                                            "type": "string"
-                                        },
-                                        "artist": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": [
-                                        "id",
-                                        "name",
-                                        "artist"
-                                    ]
+                                    "$ref": "#/components/schemas/TrackResource"
                                 }
                             }
                         }
                     }
                 }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "TrackIdEmptyResource": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Track ID cannot be empty",
+                        "examples": [
+                            "Track ID cannot be empty."
+                        ]
+                    }
+                },
+                "required": [
+                    "message"
+                ],
+                "title": "TrackIdEmptyResource"
+            },
+            "TrackIdInvalidFormatResource": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Track ID format is invalid",
+                        "examples": [
+                            "Track ID format is invalid."
+                        ]
+                    }
+                },
+                "required": [
+                    "message"
+                ],
+                "title": "TrackIdInvalidFormatResource"
+            },
+            "TrackNotFoundResource": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Track not found",
+                        "examples": [
+                            "Track with ID 008rk8F6ZxspZT4bUlkIQG not found."
+                        ]
+                    }
+                },
+                "required": [
+                    "message"
+                ],
+                "title": "TrackNotFoundResource"
+            },
+            "TrackResource": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Unique identifier of the track",
+                        "examples": [
+                            "008rk8F6ZxspZT4bUlkIQG"
+                        ]
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the track",
+                        "examples": [
+                            "Fever"
+                        ]
+                    },
+                    "artist": {
+                        "type": "string",
+                        "description": "Artisan of the track",
+                        "examples": [
+                            "YOSA & TAAR"
+                        ]
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "artist"
+                ],
+                "title": "TrackResource"
             }
         }
     }

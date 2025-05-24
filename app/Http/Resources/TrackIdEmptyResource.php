@@ -13,7 +13,7 @@ class TrackIdEmptyResource extends JsonResource
              * Track ID cannot be empty
              * @example "Track ID cannot be empty."
              */
-            'message' => $this->message,
+            'message' => $this['message'],
         ];
     }
 

@@ -15,7 +15,7 @@ class TrackNotFoundResource extends JsonResource
              * Track not found
              * @example "Track with ID 008rk8F6ZxspZT4bUlkIQG not found."
              */
-            'message' => $this->message,
+            'message' => $this['message'],
         ];
     }
 
