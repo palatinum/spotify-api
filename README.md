@@ -7,14 +7,15 @@
 
 ## 2. Crear el .env
    ```bash
-   cd spotify-api/
-   cp .env.example .env
+   cd spotify-api/ && cp .env.example .env
    ```
 
 ## 3. Ejecutar docker:
    ```bash
-   docker compose up -d
+   docker compose up
    ```
+Esperar a que se ejecute las migraciones y se genere la documentación:
+![fin](end.JPG)
 
 ### La documentación
 Json de la documentación: [api.json](./api.json)
@@ -23,7 +24,7 @@ Para visualizar la documentación entar en  [localhost/docs/api](http://localhos
 
 Datos de ejemplo para usar la API (trackId):
 
-- 008rk8F6ZxspZT4bUlkIQG
-- 00bc7A2CLjp40XNd6ZPZNa
-- 00emjlCv9azBN0fzuuyLqy
-- 00Z0GIRi0l7WqQnQJCo5S2
+- 08rBIlTMXlF5uEHobZglxv
+- 0Fc9QSMX6fgEBgDjUax7t7
+- 0GfS3y8Jd7SHWd9R51s7Fo
+- 0r7CVbZTWZgbTCYdfa2P31
