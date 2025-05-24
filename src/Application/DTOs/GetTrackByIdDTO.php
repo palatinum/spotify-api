@@ -2,7 +2,7 @@
 
 namespace Src\Application\DTOs;
 
-use InvalidArgumentException;
+use Src\Domain\Exceptions\TrackIdEmptyException;
 
 readonly class GetTrackByIdDTO
 {
@@ -18,7 +18,7 @@ readonly class GetTrackByIdDTO
     private function validate(): void
     {
         if (empty($this->trackId)) {
-            throw new InvalidArgumentException("Track ID cannot be empty.");
+            throw new TrackIdEmptyException();
         }
     }
 

@@ -3,6 +3,7 @@
 namespace Src\Domain\ValueObjects;
 
 use InvalidArgumentException;
+use Src\Domain\Exceptions\TrackIdInvalidFormatException;
 use Src\Shared\Domain\ValueObjects\StringVO;
 
 class TrackIdVO extends StringVO
@@ -22,7 +23,7 @@ class TrackIdVO extends StringVO
     private function validate(): void
     {
         if (!preg_match('/^[a-zA-Z0-9]{22}$/', $this->value)) {
-            throw new InvalidArgumentException("Track ID format is invalid.");
+            throw new TrackIdInvalidFormatException();
         }
     }
 }
