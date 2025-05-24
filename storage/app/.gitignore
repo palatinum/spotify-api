@@ -1,4 +1,6 @@
 *
+!sql/
+!sql/spotify_songs.sql
 !private/
 !public/
 !.gitignore
